@@ -1,5 +1,6 @@
-# Builds bladeRF.dll for the host architecture with MSVC and copies it, with the
-# libusb DLL, to dist\native\windows-<arch>.
+# Builds bladeRF.dll for the host architecture with MSVC and copies it to
+# dist\native\windows-<arch>. At runtime bladeRF.dll uses the libusb DLL that
+# jlibusb supplies, so only the import library is used here.
 #
 # Usage: native\build-windows.ps1 -Arch x64|ARM64 [-Ref <bladeRF-git-ref>]
 #
@@ -98,7 +99,6 @@ Write-Host "=== packaging $Platform ==="
 $Dll = Get-ChildItem -Recurse -Path build -Filter bladeRF.dll | Select-Object -First 1
 if (-not $Dll) { throw 'bladeRF.dll was not produced' }
 Copy-Item $Dll.FullName "$Out\bladeRF.dll"
-Copy-Item "$Work\usb\$UsbDir\libusb-1.0.dll" "$Out\libusb-1.0.dll"
 Copy-Item 'bladeRF\COPYING' "$Licenses\bladeRF\COPYING"
 Copy-Item 'bladeRF\legal\licenses\*' "$Licenses\bladeRF\"
 # no-OS has no license file: its terms are at the top of each source file.
