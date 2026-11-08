@@ -22,7 +22,7 @@ endorsed by Nuand or its contributors.
 
 libbladeRF is shipped as a separate shared library so it can be replaced: point
 the `jbladerf.library.path` system property at a directory containing your own
-build along with libusb.
+build. It uses the libusb that jlibusb supplies.
 
 ## AD9361 driver
 
@@ -36,10 +36,8 @@ rights.
 
 ## libusb
 
-Source: <https://github.com/libusb/libusb>
-
-Licensed under the GNU Lesser General Public License version 2.1 or later. See
-`META-INF/licenses/libusb-COPYING`.
-
-libusb is shipped as a separate shared library so it can be replaced, in the same
-way as libbladeRF.
+jBladeRF does not contain libusb. It is supplied at runtime by
+[jlibusb](https://github.com/DSheirer/jlibusb), which ships it under the GNU
+Lesser General Public License version 2.1 or later and documents how to
+replace it. jBladeRF is built against the libusb headers of the release that
+`native/versions.env` records.
